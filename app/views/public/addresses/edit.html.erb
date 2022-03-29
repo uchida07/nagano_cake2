@@ -1,0 +1,18 @@
+<h1>会員情報編集</h1>
+<%= form_with model: @address do |f| %>
+<div>
+  <span>郵便番号(ハイフンなし)</span>
+  <span><%= f.text_field :postal_code %></span>
+</div>
+<div>
+  <span>住所</span>
+  <span><%= f.text_field :addresses %></span>
+</div>
+<div>
+  <span>宛名</span>
+  <span><%= f.text_field :name %></span>
+</div>
+
+<%= f.submit '編集内容を保存' %>
+
+<% end %>
