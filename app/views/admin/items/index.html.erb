@@ -19,13 +19,13 @@
           <p><%= item.name %></p>
         </td>
         <td>
-          <p><%= item.price %></p>
+          <p><%= item.price %>円</p>
         </td>
         <td>
           <p><%= item.genre_id %></p>
         </td>
         <td>
-          <p><%= item.is_active %></p>
+          <p><%= item.is_active ? "販売中" : "販売停止中" %></p>
         </td>
       </tr>
     <% end %>

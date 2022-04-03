@@ -14,3 +14,7 @@
 <div>
   <span>¥<%= @item.price %>(税込)</span>
 </div>
+<div>
+  <span><%= @order_datail.number_field :amount %>円</span>
+  <span><%= @order_datail.submit 'カートに入れる' %></span>
+</div>
