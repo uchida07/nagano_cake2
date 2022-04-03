@@ -5,6 +5,17 @@ class Public::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @order_datail = Order_datail.new
+    @cart_item = CartItem.new
+  end
+
+  # def create
+  #   @cart_item = CartItem.new(cart_item_params)
+  #   @cart_item.save
+  #   redirect_to item_path(@item.id)
+  # end
+
+  private
+  def cart_item_params
+    params.require(:cart_item).permit(:amount)
   end
 end

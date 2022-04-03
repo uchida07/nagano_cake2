@@ -16,6 +16,9 @@ Rails.application.routes.draw do
      resources :my_page
      resources :addresses
      resources :items
+     resources :cart_items
+     get 'orders/complete' => 'orders#complete', as: :complete
+     resources :orders
    end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -20,10 +20,9 @@
 </div>
 <div>
   <span>
-    <p>税込価格</p>
-    <p>(税抜価格)</p>
+    <p>税込価格</br>(税抜価格)</p>
   </span>
-  <span><%= @item.price %></span>
+  <span><%= (@item.price * 1.1).floor %>円(<%= @item.price %>円)</span>
 </div>
 <div>
   <span>販売ステータス</span>

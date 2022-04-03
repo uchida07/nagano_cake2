@@ -4,17 +4,18 @@
   <%= image_tag 'no_image', size: "200x200" %>
 <% end %>
 <div>
-  <span>商品名</span>
   <span><%= @item.name %></span>
 </div>
 <div>
-  <span>商品名説明</span>
   <span><%= @item.introduction %></span>
 </div>
 <div>
   <span>¥<%= @item.price %>(税込)</span>
 </div>
+<%= form_with model: @cart_item, url: cart_items_path do |f| %>
 <div>
-  <span><%= @order_datail.number_field :amount %>円</span>
-  <span><%= @order_datail.submit 'カートに入れる' %></span>
+  <span><%= f.hidden_field :item_id, value: @item.id %></span>
+  <span><%= f.select :amount, *[1..10] %></span>
+  <span><%= f.submit 'カートに入れる' %></span>
 </div>
+<% end %>
