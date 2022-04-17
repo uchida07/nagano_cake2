@@ -8,6 +8,8 @@ class Public::ItemsController < ApplicationController
     @cart_item = CartItem.new
   end
 
+
+
   # def create
   #   @cart_item = CartItem.new(cart_item_params)
   #   @cart_item.save

@@ -1,32 +1,88 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td>
-          <span><%= image_tag order.item.image, size: "40x40" %></span>
-          <span><%= order.item.name %></span>
-        </td>
-        <td>
-          <p><%= corder.item.with_tax_price%></p>
-        </td>
-        <td>
-          <span><%= order.cart_item.amount %></span>
-        </td>
-        <td>
-          <p><%= order.curt_item.subtotal%></p>
-        </td>
-        <td>
-          <p><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, "data-confirm" => "Are you sure ?" %></p>
-        </td>
-        <% @total += cart_item.subtotal %>
-      </tr>
+<div class="container">
+  <div class="row">
+    <h5>注文情報確認</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td>
+              <span><%= image_tag cart_item.item.image, size: "40x40" %></span>
+              <span><%= cart_item.item.name %></span>
+            </td>
+            <td>
+              <p><%= cart_item.item.with_tax_price%>円</p>
+            </td>
+            <td>
+              <span><%= cart_item.amount %></span>
+            </td>
+            <td>
+              <p><%= cart_item.subtotal%>円</p>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 offset-md-7">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>送料</th>
+            <th>商品合計</th>
+            <th>請求金額</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <%= @order.postage %>円
+            </td>
+            <td>
+              <%= @total.round.to_s(:delimited) %>円
+            </td>
+            <td>
+              <%= @order.billing_amount %>円
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div>
+    <span><strong>支払い方法</strong></span>
+    <span><%= @order.payment_method_i18n %></span>
+  </div>
+  <div>
+    <span><strong>お届け先</strong></span>
+    <span>〒<%= @order.postal_code %><%= @order.address %><%= @order.name %></span>
+  </div>
+    <div class="row text-center">
+      <%= form_with model: @order do |f| %>
+        <%= f.hidden_field :postal_code %>
+        <%= f.hidden_field :address %>
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :postage, value: @order.postage %>
+        <%= f.hidden_field :billing_amount, value: @order.billing_amount %>
+        <%= f.hidden_field :payment_method %>
+        <% @cart_items.each do |cart_item| %>
+        <%= f.fields_for :order_datails do |datail_fields| %>
+          <%= datail_fields.hidden_field :item_id, value: cart_item.item.id %>
+          <%= datail_fields.hidden_field :order_id, value: @order.id %>
+          <%= datail_fields.hidden_field :price, value: cart_item.item.with_tax_price %>
+          <%= datail_fields.hidden_field :amount, value: cart_item.amount %>
+        <% end %>
+      <% end %>
+        <%= f.submit '注文を確定する' %>
+      <% end %>
+    </div>
+  </div>
 
-    <% end %>

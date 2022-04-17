@@ -1,21 +1,29 @@
-<% if @item.image.attached? %>
-  <%= image_tag @item.image, size: "200x200" %>
-<% else %>
-  <%= image_tag 'no_image', size: "200x200" %>
-<% end %>
-<div>
-  <span><%= @item.name %></span>
+<div class="container">
+  <div class="row">
+    <div class="col">
+    <% if @item.image.attached? %>
+      <%= image_tag @item.image, size: "200x200" %>
+    <% else %>
+      <%= image_tag 'no_image', size: "200x200" %>
+    <% end %>
+    </div>
+    <div class="col">
+    <div>
+      <span><%= @item.name %></span>
+    </div>
+    <div>
+      <span><%= @item.introduction %></span>
+    </div>
+    <div>
+      <span>¥<%= @item.price %>(税込)</span>
+    </div>
+    <%= form_with model: @cart_item do |f| %>
+    <div>
+      <span><%= f.hidden_field :item_id, value: @item.id %></span>
+      <span><%= f.select :amount, *[1..10] %></span>
+      <span><%= f.submit 'カートに入れる' %></span>
+    </div>
+    <% end %>
+    </div>
+  </div>
 </div>
-<div>
-  <span><%= @item.introduction %></span>
-</div>
-<div>
-  <span>¥<%= @item.price %>(税込)</span>
-</div>
-<%= form_with model: @cart_item, url: cart_items_path do |f| %>
-<div>
-  <span><%= f.hidden_field :item_id, value: @item.id %></span>
-  <span><%= f.select :amount, *[1..10] %></span>
-  <span><%= f.submit 'カートに入れる' %></span>
-</div>
-<% end %>

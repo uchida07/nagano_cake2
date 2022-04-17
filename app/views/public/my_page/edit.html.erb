@@ -1,32 +1,36 @@
-<h1>会員情報編集</h1>
-<%= form_with model: @my_page, url: my_page_path do |f| %>
-<div>
-  <span>氏名</span>
-  <span><%= f.text_field :last_name %></span>
-  <span><%= f.text_field :first_name %></span>
+<div class="container">
+  <h1>会員情報編集</h1>
+  <div class="row">
+    <div class="col-lg-12">
+    <%= form_with model: @my_page, url: my_page_path do |f| %>
+    <div>
+      <span>氏名</span>
+      <span><%= f.text_field :last_name %></span>
+      <span><%= f.text_field :first_name %></span>
+    </div>
+    <div>
+      <span>フリガナ</span>
+      <span><%= f.text_field :last_name_kana %></span>
+      <span><%= f.text_field :first_name_kana %></span>
+    </div>
+    <div>
+      <span>郵便番号</span>
+      <span><%= f.text_field :postal_code %></span>
+    </div>
+    <div>
+      <span>住所</span>
+      <span><%= f.text_field :address %></span>
+    </div>
+    <div>
+      <span>電話番号</span>
+      <span><%= f.text_field :telephone_number %></span>
+    </div>
+    <div>
+      <span>メールアドレス</span>
+      <span><%= f.text_field :email %></span>
+    </div>
+    <%= f.submit '編集内容を保存' %>
+    <% end %>
+    </div>
+  </div>
 </div>
-<div>
-  <span>フリガナ</span>
-  <span><%= f.text_field :last_name_kana %></span>
-  <span><%= f.text_field :first_name_kana %></span>
-</div>
-<div>
-  <span>郵便番号</span>
-  <span><%= f.text_field :postal_code %></span>
-</div>
-<div>
-  <span>住所</span>
-  <span><%= f.text_field :address %></span>
-</div>
-<div>
-  <span>電話番号</span>
-  <span><%= f.text_field :telephone_number %></span>
-</div>
-<div>
-  <span>メールアドレス</span>
-  <span><%= f.text_field :email %></span>
-</div>
-
-<%= f.submit '編集内容を保存' %>
-
-<% end %>

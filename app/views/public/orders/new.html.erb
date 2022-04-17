@@ -1,21 +1,59 @@
-<h1>注文情報入力</h1>
-<%= form_with model: @order do |f| %>
-<div>
-  <div>
-    <strong>支払方法</strong>
+<div class="container">
+  <h1>注文情報入力</h1>
+  <div class="row">
+    <%= form_with model: @order,url:confirm_path do |f| %>
+    <div>
+      <div>
+        <strong>支払方法</strong>
+      </div>
+      <div>
+        <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+        <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+      </div>
+      <div>
+        <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+        <%= f.label :payment_method, Order.payment_methods_i18n[:transfer]%>
+      </div>
+      <div>
+        <strong>お届け先</strong>
+      </div>
+      <div>
+        <%= f.radio_button :select_address, "0" %>
+        <%= f.label :select_address, "ご自身の住所", value: 0  %>
+      </div>
+      <div>
+        〒<%= current_customer.postal_code %><%= current_customer.address %>
+      </div>
+      <div>
+        <%= current_customer.full_name %>
+      </div>
+
+      <div>
+        <%= f.radio_button :select_address, "1" %>
+        <%= f.label :select_address, "登録済住所から選択", value: 1 %>
+      </div>
+      <div>
+        <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+      </div>
+      <div>
+        <%= f.radio_button :select_address, "2" %>
+        <%= f.label :select_address, "新しいお届け先", value: 2 %>
+      </div>
+      <table>
+        <span>郵便番号</span>
+        <span><%= f.text_field :postal_code %></span>
+      </div>
+      <div>
+        <span>住所</span>
+        <span><%= f.text_field :address %></span>
+      </div>
+      <div>
+        <span>氏名</span>
+        <span><%= f.text_field :name %></span>
+      </div>
+
+    </div>
+    <%= f.submit '確認画面へ進む' %>
+    <% end %>
   </div>
-  <div>
-    <%= f.radio_button :payment_method, "0"%>
-    <%= f.label :payment_method, 'クレジットカード', value: 0 %>
-  </div>
-  <div>
-    <%= f.radio_button :payment_method, "1" %>
-    <%= f.label :payment_method, '銀行振込', value: 1 %>
-  </div>
-  <div>
-    <strong>お届け先</strong>
-  </div>
-  
-  <div>
 </div>
-<% end %>

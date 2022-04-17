@@ -17,7 +17,7 @@ Rails.application.routes.draw do
      resources :addresses
      resources :items
      resources :cart_items
-     get 'orders/confirm' => 'orders#confirm', as: :confirm
+     post 'orders/confirm' => 'orders#confirm', as: :confirm
      get 'orders/complete' => 'orders#complete', as: :complete
      resources :orders
    end

@@ -1,36 +1,47 @@
-<h1>注文履歴一覧</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th>注文日</th>
-      <th>配送先</th>
-      <th>注文商品</th>
-      <th>支払金額</th>
-      <th>ステータス</th>
-      <th>注文詳細</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td>
-          <span><%= order.created_at.strftime('%Y/%m/%d') %></span>
-        </td>
-        <td>
-          <p><%= order.postal_code %><%= order.address %></p>
-        </td>
-        <td>
-          <span><%#= order.item.name %></span>
-        </td>
-        <td>
-          <p><%#= order.billing_amount %></p>
-        </td>
-        <td>
-          <p><%#= item.status ? "入金待ち" : "入金確認"　: "製作中" : "発送準備中" : "発送済み" %></p>
-        </td>
-        <button class="btn btn-info">
-          <%= link_to "買い物を続ける", items_path %>
-        </button>
-      </tr>
-
-    <% end %>
+<div class="container">
+  <h1>注文履歴</h1>
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>注文日</th>
+            <th>配送先</th>
+            <th>注文商品</th>
+            <th>支払金額</th>
+            <th>ステータス</th>
+            <th>注文詳細</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td>
+                <span><%= order.created_at.strftime('%Y/%m/%d') %></span>
+              </td>
+              <td>
+                <p>〒<%= order.postal_code %></br><%= order.address %></br><%= order.name %></p>
+              </td>
+              <td>
+                <% order.order_datails.each do |order_datail| %>
+                <p><%= order_datail.item.name %></p>
+                <% end %>
+              </td>
+              <td>
+                <p><%= order.billing_amount %>円</p>
+              </td>
+              <td>
+                <span></span>
+              </td>
+              <td>
+                <button class="btn btn-info">
+                  <p><%= link_to "表示する", order_path(order.id) %></p>
+                </button>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

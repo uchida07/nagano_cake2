@@ -1,43 +1,50 @@
-<h1>配送先登録/一覧</h1>
-<%= form_with model: @address, url: addresses_path do |f| %>
-<div>
-  <span>郵便番号(ハイフンなし)</span>
-  <span><%= f.text_field :postal_code %></span>
+<div class="container">
+  <h1>配送先登録/一覧</h1>
+  <div class="row">
+    <div class="col-lg-12">
+      <%= form_with model: @address, url: addresses_path do |f| %>
+        <div>
+          <span>郵便番号(ハイフンなし)</span>
+          <span><%= f.text_field :postal_code %></span>
+        </div>
+        <div>
+          <span>住所</span>
+          <span><%= f.text_field :addresses %></span>
+        </div>
+        <div>
+          <span>宛名</span>
+          <span><%= f.text_field :name %></span>
+        </div>
+        <%= f.submit '新規登録' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @addresses.each do |address| %>
+            <tr>
+              <td>
+                <p><%= address.postal_code %></p>
+              </td>
+              <td>
+                <p><%= address.addresses %></p>
+              </td>
+              <td>
+                <p><%= address.name %></p>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-<div>
-  <span>住所</span>
-  <span><%= f.text_field :addresses %></span>
-</div>
-<div>
-  <span>宛名</span>
-  <span><%= f.text_field :name %></span>
-</div>
-<%= f.submit '新規登録' %>
-<% end %>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>郵便番号</th>
-      <th>住所</th>
-      <th>宛名</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @addresses.each do |address| %>
-      <tr>
-        <td>
-          <p><%= address.postal_code %></p>
-        </td>
-        <td>
-          <p><%= address.addresses %></p>
-        </td>
-        <td>
-          <p><%= address.name %></p>
-        </td>
-
-      </tr>
-
-    <% end %>
-    </tbody>
-  </table>
