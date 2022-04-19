@@ -13,6 +13,7 @@
   <div class="row">
     <% @item_new.each do |item| %>
       <div class="col-lg-3 col-md-6 mb-4">
+        <%= link_to item_path(item.id) do %>
         <% if item.image.attached? %>
           <%= image_tag item.image, size: "150x150" %>
         <% else %>
@@ -22,6 +23,7 @@
           <p><%= item.name %></p>
           <p><%= item.price %></p>
         </div>
+        <% end %>
       </div>
     <% end %>
   </div>

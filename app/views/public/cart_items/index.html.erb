@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
     <h1>ショッピングカート</h1>
+    <div class = "text-right">
+      <%= button_to 'カートを空にする', @cart, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'fbtn' %>
+    </div>
     <table class="table table-bordered">
     <thead>
       <tr>
@@ -56,7 +59,7 @@
       </table>
     </div>
     <button class="btn btn-info">
-      <%= link_to "買い物を続ける", items_path %>
+      <%= link_to "買い物を続ける", root_path %>
     </button>
   </div>
 </div>

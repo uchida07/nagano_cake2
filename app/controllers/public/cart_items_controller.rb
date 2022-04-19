@@ -2,7 +2,7 @@ class Public::CartItemsController < ApplicationController
   def index
     @cart_items = current_customer.cart_items
     @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
-    
+
 
   end
 
@@ -22,6 +22,13 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
+    @cart = current_customer_items
+    @cart.destroy
+    session[:cart_item_id] = nil
+    respond_to do |format|
+      format.html { redirect_to market_url, notice: 'カートが空になりました。' }
+      format.json { head :no_content }
+    end
     @cart_items = CartItem.find(params[:id])
     @cart_items.destroy
     redirect_to '/cart_items'

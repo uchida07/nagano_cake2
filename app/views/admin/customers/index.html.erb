@@ -21,7 +21,7 @@
           <p><%= customer.email %></p>
         </td>
         <td>
-          <p><%= customer.is_active %></p>
+          <p><%= customer.is_active ? "有効" : "退会" %></p>
         </td>
       </tr>
     <% end %>

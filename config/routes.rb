@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   scope module: :public do
      root "homes#top"
      get 'homes/about' => 'homes#about', as: :about
-     get 'my_page/unsubscribe' => 'my_page#unsubscribe', as: :unsubscribe
+    # get 'my_page/unsubscribe' => 'my_page#unsubscribe', as: :unsubscribe
      resources :my_page
+     get 'customers/unsubscribe' => 'customers#unsubscribe', as: :unsubscribe
+     resources :customers
      resources :addresses
      resources :items
      resources :cart_items

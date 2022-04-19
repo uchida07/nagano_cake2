@@ -39,7 +39,9 @@
                 <p><%= address.addresses %></p>
               </td>
               <td>
-                <p><%= address.name %></p>
+                <span><%= address.name %></span>
+                <button calass = "btn btn-info"><%= link_to "編集する", edit_address_path(address.id) %></button>
+                <button calass = "btn btn-info"><%= link_to "削除する", address_path(address.id), method: :delete, "date-confirm" => "Are you shure ?" %></button>
               </td>
             </tr>
           <% end %>
