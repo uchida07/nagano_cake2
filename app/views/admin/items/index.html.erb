@@ -1,33 +1,44 @@
+<div class="container">
 <h1>商品一覧</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td>
-          <p><%= item.id %></p>
-        </td>
-        <td>
-          <p><%= item.name %></p>
-        </td>
-        <td>
-          <p><%= item.price %>円</p>
-        </td>
-        <td>
-          <p><%= item.genre_id %></p>
-        </td>
-        <td>
-          <p><%= item.is_active ? "販売中" : "販売停止中" %></p>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-lg-12">
+      <button class = "btn btn-info">
+        <%= link_to "新規登録", new_admin_item_path %>
+      </button>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <!--<th>ジャンル</th>-->
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td>
+                <p><%= item.id %></p>
+              </td>
+              <td>
+                <%= link_to admin_item_path(item.id) do %>
+                  <p><%= item.name %></p>
+                <% end %>
+              </td>
+              <td>
+                <p><%= item.price %>円</p>
+              </td>
+              <!--<td>-->
+              <!--  <p><%#= item.genre_id %></p>-->
+              <!--</td>-->
+              <td>
+                <p><%= item.is_active ? "販売中" : "販売停止中" %></p>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

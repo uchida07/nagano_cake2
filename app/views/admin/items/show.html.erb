@@ -1,32 +1,39 @@
-<h1>商品詳細</h1>
-<div class="row">
-  <div class="col-md-8 offset-md-1">
- <% if @item.image.attached? %>
-  <%= image_tag @item.image, size: "200x200" %>
-<% else %>
-  <%= image_tag 'no_image', size: "200x200" %>
-<% end %>
-<div>
-  <span>商品名</span>
-  <span><%= @item.name %></span>
-</div>
-<div>
-  <span>商品名説明</span>
-  <span><%= @item.introduction %></span>
-</div>
-<div>
-  <span>ジャンル</span>
-  <span><%= @item.genre_id %></span>
-</div>
-<div>
-  <span>
-    <p>税込価格</br>(税抜価格)</p>
-  </span>
-  <span><%= (@item.price * 1.1).floor %>円(<%= @item.price %>円)</span>
-</div>
-<div>
-  <span>販売ステータス</span>
-  <span><%= @item.is_active ? "販売中" : "販売停止中" %></span>
-</div>
-</div>
+<div class="container">
+  <h1>商品詳細</h1>
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, size: "200x200" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "200x200" %>
+      <% end %>
+      <div>
+        <span>商品名</span>
+        <span><%= @item.name %></span>
+      </div>
+      <div>
+        <span>商品名説明</span>
+        <span><%= @item.introduction %></span>
+      </div>
+      <div>
+        <span>ジャンル</span>
+        <span><%= @item.genre_id %></span>
+      </div>
+      <div>
+        <span>
+          <p>税込価格</br>(税抜価格)</p>
+        </span>
+        <span><%= (@item.price * 1.1).floor %>円(<%= @item.price %>円)</span>
+      </div>
+      <div>
+        <span>販売ステータス</span>
+        <span><%= @item.is_active ? "販売中" : "販売停止中" %></span>
+      </div>
+    </div>
+    <div>
+    <button class = "btn btn-info">
+      <%= link_to "編集する", edit_admin_item_path(@item.id)%>
+    </button>
+    </div>
+  </div>
 </div>
