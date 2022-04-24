@@ -2,10 +2,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
-  def after_sign_up_path_for(resource)
-    customer_path(current_customer.id)
-  end
-  
+  # def after_sign_up_path_for(resource)
+  #   customers_path
+  # end
+
   def after_sign_in_path_for(resource)
     if request.fullpath.include? "admin"
       admin_root_path
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     if request.fullpath.include? "admin"
       admin_session_path
     else
-      about_path
+      root_path
     end
   end
   protected

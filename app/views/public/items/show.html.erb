@@ -15,7 +15,7 @@
       <span><%= @item.introduction %></span>
     </div>
     <div>
-      <span>¥<%= @item.price %>(税込)</span>
+      <span>¥<%= (@item.price * 1.1).floor %>円(税込)</span>
     </div>
     <%= form_with model: @cart_item do |f| %>
     <div>

@@ -7,8 +7,8 @@
         <p>退会すると、会員情報や</br>これまでの購入履歴が閲覧できなくなります。</br>退会する場合は、「退会する」をクリックしてください。</p>
       </div>
       <div>
-        <span><botton class = "btn btn-info"><%= link_to "退会しない",customer_path(current_customer.id) %></botton></span>
-        <span><botton class = "btn btn-danger"><%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" } %></botton></span>
+        <span><botton class = "btn btn-info"><%= link_to "退会しない",customers_path %></botton></span>
+        <span><botton class = "btn btn-danger"><%= link_to "退会する", withdrawal_path, method: :patch, data: { confirm: "本当に退会しますか？" } %></botton></span>
       </div>
     </div>
   </div>

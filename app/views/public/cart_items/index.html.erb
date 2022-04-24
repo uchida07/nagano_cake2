@@ -2,7 +2,7 @@
   <div class="row">
     <h1>ショッピングカート</h1>
     <div class = "text-right">
-      <%= button_to 'カートを空にする', @cart, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'fbtn' %>
+      <%= button_to 'カートを空にする', destroy_all_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'fbtn' %>
     </div>
     <table class="table table-bordered">
     <thead>

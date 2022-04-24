@@ -22,7 +22,7 @@
               <p><%= order.name %></p>
             </td>
             <td>
-              <p><%#= order.order_datails.amount %></p>
+              <p><%= order.order_datails.sum(:amount) %></p>
             </td>
             <!--<td>-->
             <!--  <p><%#= order.status %></p>-->
