@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     # get 'my_page/unsubscribe' => 'my_page#unsubscribe', as: :unsubscribe
      resources :my_page
      get 'customers/unsubscribe' => 'customers#unsubscribe', as: :unsubscribe
+     patch 'customers/withdrawal' => 'customers#withdrawal', as: :withdrawal
      resources :customers
      resources :addresses
      resources :items

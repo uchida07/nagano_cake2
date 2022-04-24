@@ -8,7 +8,7 @@
       </div>
       <div>
         <span><botton class = "btn btn-info"><%= link_to "退会しない",customer_path(current_customer.id) %></botton></span>
-        <span><%= link_to "退会する" %></span>
+        <span><botton class = "btn btn-danger"><%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" } %></botton></span>
       </div>
     </div>
   </div>
